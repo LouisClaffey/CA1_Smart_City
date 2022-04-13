@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+option java_package = "grpc.reportProblemService";
+option java_multiple_files = true;
+option java_outer_classname = "reportProblemServiceImpl";
+
+service ReportProblemService {
+	// rpc stands for remote procedure call
+
+	// unary
+	// log into device
+	rpc Login(loginRequest) returns (loginResponse){}
+
+	// server streaming
+	// problem registered, sent from client to server
+	// server returns multiple fixes
+	rpc ReportProblem(problemType) returns (stream problemFixes){}
+
+
+	// client streaming rpc
+	// multiple warnings of potential future problems
+	// returns one fix message
+	rpc ReportWarning(stream problemType) returns (problemFix){}
+
+	// log out of device
+	// no message sent back
+	rpc LogOut(logoutRequest) returns (empty){}
+
+}
+
+message loginRequest {
+
+
+	string request = 1;
+
+}
+
+message loginResponse {
+
+	string response = 1;
+
+}
+
+message problemType {
+
+	int32 number = 1;
+}
+
+message problemFixes {
+
+	int32 number = 1;
+}
+
+message problemFix {
+	string fix = 1;
+}
+
+message logoutRequest{
+
+	string request = 1;
+
+}
+
+message empty {
+
+
+}
