@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option java_package = "grpc.reportProblemService";
+option java_package = "ReportProblemService";
 option java_multiple_files = true;
-option java_outer_classname = "reportProblemServiceImpl";
+option java_outer_classname = "ReportProblemServiceImpl";
 
 service ReportProblemService {
 	// rpc stands for remote procedure call
