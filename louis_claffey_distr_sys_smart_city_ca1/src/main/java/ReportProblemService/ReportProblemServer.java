@@ -47,7 +47,7 @@ private Server server;
 			String loginDetails = request.getRequest();
 			System.out.println("Our first request is: " + loginDetails );
 			
-			// building the response
+			// response
 			
 			loginResponse.Builder responseBuilder = loginResponse.newBuilder();
 			
@@ -106,10 +106,68 @@ private Server server;
 			
 		}
 		
-	}
+		// method for client streaming
+		// a stream of messages will be sent from the client, with one string 'fix' sent from the server
+		// for these messages we need to implement a stream observer
+		// which will be passed back to the gPRC library
+		
+		public StreamObserver<problemType> reportWarning(StreamObserver<problemFix> responseObserver){
+			System.out.println("Message to show that we are inside the server, streaming messages from client will follow.\n");
+			return new StreamObserver<problemType>() {
+
+				@Override
+				public void onNext(problemType value) {
+				System.out.println("Message from client: " + value.getNumber());
+					
+				}
+
+				@Override
+				public void onError(Throwable t) {
+				
+					
+				}
+
+				@Override
+				public void onCompleted() {
+					
+					problemFix.Builder responseBuilder = problemFix.newBuilder();
+					
+					// the fix sent from the server
+					responseBuilder.setFix("This will solve the problem.");
+					
+					responseObserver.onNext(responseBuilder.build());
+					responseObserver.onCompleted();				
+					
+				}};
+		}
+		
+		// logOut method
+		// receives logout message from client, returns nothing (empty)
+		
+		@Override
+		public void logOut(logoutRequest request, StreamObserver<empty> responseObserver) {
+			
+			// ask the client for login details
+			
+			String logout = request.getRequest();
+			System.out.println("You have logged out: " + logout );
+			
+			// response
+			
+			empty.Builder responseBuilder = empty.newBuilder();
+			
+			
+			responseBuilder.build();
+			
+			responseObserver.onNext(responseBuilder.build());
+			responseObserver.onCompleted();
+			
+		}
+		
+	}// main method
 	
 	
 	
 
 
-}
+}// class 
