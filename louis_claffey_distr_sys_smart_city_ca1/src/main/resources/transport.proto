@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+option java_package = "TransportService";
+option java_multiple_files = true;
+option java_outer_classname = "TransportServiceImpl";
+
+service TransportService {
+	// rpc stands for remote procedure call
+
+	// server side streaming
+	rpc EnterRoute(routeRequest) returns (stream routes){}
+
+	// server streaming
+	// client send transport type request
+	// multiple times returned
+	rpc CheckTimes(transportType) returns (stream times){}
+
+
+	// bi-direction streaming
+	// client can send multiple messages and receive multiple
+	// messages back from server
+	// chat service
+	rpc Chat(stream chatRequest) returns (stream chatResponse){}
+
+
+}
+
+message routeRequest {
+
+	string from = 1;
+	string destination =2;
+
+}
+
+message routes {
+
+	string response = 1;
+
+}
+
+message transportType {
+
+	enum Transports{
+
+  	DART =0;
+  	BUS=1;
+  	LUAS=2;
+  }
+  Transports transports = 1;
+}
+
+message times {
+
+	string time = 1;
+}
+
+message chatRequest {
+	string request = 1;
+}
+
+message chatResponse{
+
+	string reponse = 1;
+
+}
