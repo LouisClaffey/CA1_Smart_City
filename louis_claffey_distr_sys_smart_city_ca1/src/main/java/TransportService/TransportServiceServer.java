@@ -120,7 +120,7 @@ public class TransportServiceServer {
 			// find out content of message from the client
 			
 			Transports requestedType = type.getTransports();
-			System.out.println("Our requested route is: " + requestedType );
+			System.out.println("Our requested transport type is: " + requestedType );
 			
 			//response
 			

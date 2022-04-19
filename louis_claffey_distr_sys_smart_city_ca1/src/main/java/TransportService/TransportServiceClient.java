@@ -43,7 +43,8 @@ public class TransportServiceClient {
 			System.out.println(routeResponse.getResponse());
 		}
 		
-		System.out.println("The requested transport type is: " + type);
+		System.out.println();
+		System.out.println("The requested transport type is: " + Transports.DART);
 		System.out.println("The times are as follows:\n ");
 		
 		
