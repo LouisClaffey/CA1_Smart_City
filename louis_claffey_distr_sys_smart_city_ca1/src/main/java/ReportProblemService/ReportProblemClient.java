@@ -74,6 +74,8 @@ public class ReportProblemClient {
 			@Override
 			public void onError(Throwable t) {
 				System.out.println("There was an error.");
+				t.printStackTrace();
+				
 				
 			}
 
