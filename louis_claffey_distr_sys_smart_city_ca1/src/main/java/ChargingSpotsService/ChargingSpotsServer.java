@@ -16,6 +16,7 @@ public class ChargingSpotsServer {
 		ChargingSpotsServer ourServer = new ChargingSpotsServer();
 		ourServer.start();
 		
+		
 	}
 	
 	private void start() throws IOException, InterruptedException {
@@ -23,6 +24,10 @@ public class ChargingSpotsServer {
 		System.out.println("Starting gRPC server");
 		
 		int port = 50053;
+		String service_type = "_grpc._tcp.local.";
+		String service_name = "GrpcServer";
+		SimpleServiceRegistration ssr = new SimpleServiceRegistration();
+		ssr.run(port, service_type, service_name);
 		
 		server = ServerBuilder.forPort(port).addService(new ChargingSpotsServerImpl()).build().start();
 		System.out.println("Our server is running on the port: " + port);

@@ -2,6 +2,7 @@ package ReportProblemService;
 
 import java.io.IOException;
 
+import ChargingSpotsService.SimpleServiceRegistration;
 import ReportProblemService.ReportProblemServiceGrpc.ReportProblemServiceImplBase;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -26,6 +27,10 @@ private Server server;
 		System.out.println("Starting gRPC server");
 		
 		int port = 50051;
+		String service_type = "_grpc._tcp.local.";
+		String service_name = "GrpcServer";
+		SimpleServiceRegistration ssr = new SimpleServiceRegistration();
+		ssr.run(port, service_type, service_name);
 		
 		server = ServerBuilder.forPort(port).addService(new ReportProblemServerImpl()).build().start();
 		System.out.println("Our server is running on the port: " + port);

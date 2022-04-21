@@ -3,6 +3,7 @@ package TransportService;
 import java.io.IOException;
 import java.util.*;
 
+import ChargingSpotsService.SimpleServiceRegistration;
 import TransportService.TransportServiceGrpc.TransportServiceImplBase;
 import TransportService.TransportServiceServer;
 import TransportService.transportType.Transports;
@@ -28,6 +29,10 @@ public class TransportServiceServer {
 		System.out.println("Starting gRPC server");
 		
 		int port = 50052;
+		String service_type = "_grpc._tcp.local.";
+		String service_name = "GrpcServer";
+		SimpleServiceRegistration ssr = new SimpleServiceRegistration();
+		ssr.run(port, service_type, service_name);
 		
 		server = ServerBuilder.forPort(port).addService(new TransportServiceServerImpl()).build().start();
 		System.out.println("Our server is running on the port: " + port);
