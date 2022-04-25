@@ -57,7 +57,7 @@ public class ChargingSpotsServer {
 				} else if (timeOn + 0.45 == timeOff) {
 					responseBuilder.setCommand("Charging for 45 minutes.");
 				} else {
-					responseBuilder.setCommand("Time limit too long.");
+					responseBuilder.setCommand("Time limit not correct.");
 				}
 				
 				responseObserver.onNext(responseBuilder.build());

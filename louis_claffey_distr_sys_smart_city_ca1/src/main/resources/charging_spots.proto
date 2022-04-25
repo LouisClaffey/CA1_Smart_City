@@ -8,12 +8,15 @@ service ChargingSpotsService {
 	// rpc stands for remote procedure call
 
 
+	// client side streaming
 	rpc TrackLocation(stream coordinates) returns (chargingSpots ){}
 
 
+	// server side streaming
 	rpc CheckPrices(chargingSpots) returns (stream prices){}
 
 
+	// unary
 	rpc AutomateTime(time) returns (command){}
 
 

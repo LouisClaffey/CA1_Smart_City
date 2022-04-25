@@ -131,20 +131,20 @@ public class TransportServiceServer {
 			
 			times.Builder responseBuilder = times.newBuilder();
 			
-			// first returned route 
+			// first returned time
 			
 			
 			responseBuilder.setTime(requestedType + " " +  time1.toString());
 	
 			
 			responseObserver.onNext(responseBuilder.build());
-			// second returned route
+			// second returned time
 			
 			responseBuilder.setTime(requestedType + " " + time2.toString());
 		
 			
 			responseObserver.onNext(responseBuilder.build());
-			// third returned route
+			// third returned time
 			
 			responseBuilder.setTime(requestedType + " " + time3.toString());
 		
